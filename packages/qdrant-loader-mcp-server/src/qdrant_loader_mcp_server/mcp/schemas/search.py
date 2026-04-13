@@ -60,6 +60,7 @@ def get_search_tool_schema() -> dict[str, Any]:
                         # Allow extra fields for richer result payloads (e.g., document_id, content_snippet, source_url)
                         "additionalProperties": True,
                         "properties": {
+                            "document_id": {"type": "string"},
                             "score": {"type": "number"},
                             "title": {"type": "string"},
                             "content": {"type": "string"},

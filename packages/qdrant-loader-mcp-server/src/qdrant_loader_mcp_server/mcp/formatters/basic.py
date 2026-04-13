@@ -23,6 +23,8 @@ class BasicResultFormatters:
         """
         formatted_result = f"Score: {result.score}\n"
         formatted_result += f"Source: {result.source_type}"
+        if getattr(result, "document_id", None):
+            formatted_result += f"\nDocument ID: {result.document_id}"
 
         text = result.text
         contextual_content = getattr(result, "contextual_content", None)

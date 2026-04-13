@@ -173,6 +173,7 @@ class TestMCPFormatters:
 
         # Check core components
         assert f"Score: {sample_search_result.score}" in formatted
+        assert f"Document ID: {sample_search_result.document_id}" in formatted
         assert f"Text: {sample_search_result.text}" in formatted
         assert f"Source: {sample_search_result.source_type}" in formatted
         assert sample_search_result.source_title in formatted
@@ -198,6 +199,7 @@ class TestMCPFormatters:
         formatted = MCPFormatters.format_search_result(sample_attachment_result)
 
         # Check attachment-specific formatting
+        assert f"Document ID: {sample_attachment_result.document_id}" in formatted
         assert "📎 Attachment: technical-spec.pdf" in formatted
         assert "📋 Technical documentation attachment" in formatted
         assert "📄 Attached to: Technical Documentation" in formatted
