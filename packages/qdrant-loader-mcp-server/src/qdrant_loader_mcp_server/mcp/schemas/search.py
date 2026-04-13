@@ -24,6 +24,7 @@ def get_search_tool_schema() -> dict[str, Any]:
                             "jira",
                             "documentation",
                             "localfile",
+                            "yandexwiki",
                         ],
                     },
                     "description": "Optional list of source types to filter results",
@@ -70,6 +71,7 @@ def get_search_tool_schema() -> dict[str, Any]:
                                     "jira",
                                     "documentation",
                                     "localfile",
+                                    "yandexwiki",
                                 ],
                             },
                             "metadata": {
