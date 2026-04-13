@@ -35,6 +35,16 @@ AsyncQdrantClient = None  # type: ignore[assignment] - will be lazy loaded
 logger = LoggingConfig.get_logger(__name__)
 
 
+def _get_async_openai():
+    """Get AsyncOpenAI class, using module-level if patched, otherwise lazy import."""
+    global AsyncOpenAI
+    if AsyncOpenAI is not None:
+        return AsyncOpenAI
+    from openai import AsyncOpenAI as _AsyncOpenAI
+
+    return _AsyncOpenAI
+
+
 def _get_async_qdrant_client():
     """Get AsyncQdrantClient class, using module-level if patched, otherwise lazy import."""
     global AsyncQdrantClient
@@ -147,9 +157,9 @@ class SearchEngine:
             self.client = QdrantClientClass(**client_kwargs)
             # Keep legacy OpenAI client for now only when tests patch AsyncOpenAI
             try:
-                if AsyncOpenAI is not None and getattr(openai_config, "api_key", None):
+                if getattr(openai_config, "api_key", None):
                     # Use module-scope alias so tests can patch this symbol
-                    self.openai_client = AsyncOpenAI(api_key=openai_config.api_key)
+                    self.openai_client = _get_async_openai()(api_key=openai_config.api_key)
                 else:
                     self.openai_client = None
             except Exception:
