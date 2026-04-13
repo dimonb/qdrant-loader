@@ -135,6 +135,7 @@ class ProjectManager:
                 bool(config.sources.jira),
                 bool(config.sources.localfile),
                 bool(config.sources.publicdocs),
+                bool(config.sources.yandexwiki),
             ]
         )
 
@@ -225,6 +226,7 @@ class ProjectManager:
             "jira": config.sources.jira,
             "localfile": config.sources.localfile,
             "publicdocs": config.sources.publicdocs,
+            "yandexwiki": config.sources.yandexwiki,
         }
 
         for source_type, sources in source_types.items():
@@ -303,6 +305,10 @@ class ProjectManager:
                 "publicdocs": {
                     name: self._source_config_to_dict(cfg)
                     for name, cfg in config.sources.publicdocs.items()
+                },
+                "yandexwiki": {
+                    name: self._source_config_to_dict(cfg)
+                    for name, cfg in config.sources.yandexwiki.items()
                 },
             },
         }

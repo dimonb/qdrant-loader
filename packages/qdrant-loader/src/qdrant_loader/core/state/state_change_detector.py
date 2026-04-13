@@ -165,6 +165,7 @@ class StateChangeDetector:
             ("jira", filtered_config.jira),
             ("publicdocs", filtered_config.publicdocs),
             ("localfile", filtered_config.localfile),
+            ("yandexwiki", filtered_config.yandexwiki),
         ]
 
         # Process each source type

@@ -26,6 +26,7 @@ def run_project_list(settings: Any, project_manager: Any, *, output_format: str)
                             "confluence",
                             "jira",
                             "localfile",
+                            "yandexwiki",
                         )
                     )
                 else:
@@ -37,6 +38,7 @@ def run_project_list(settings: Any, project_manager: Any, *, output_format: str)
                             "confluence",
                             "jira",
                             "localfile",
+                            "yandexwiki",
                         )
                     )
             else:

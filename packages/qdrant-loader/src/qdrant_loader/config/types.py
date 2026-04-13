@@ -17,6 +17,7 @@ class SourceType(StrEnum):
     CONFLUENCE = "confluence"
     JIRA = "jira"
     LOCALFILE = "localfile"
+    YANDEXWIKI = "yandexwiki"
 
 
 class GitConfig(TypedDict):

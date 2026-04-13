@@ -49,6 +49,10 @@ class SourceFilter:
                 filtered_config.localfile = self._filter_by_name(
                     sources_config.localfile, source
                 )
+            elif source_type_lower == "yandexwiki" and sources_config.yandexwiki:
+                filtered_config.yandexwiki = self._filter_by_name(
+                    sources_config.yandexwiki, source
+                )
         else:
             # No source type filter, but filter by name across all types
             if sources_config.git:
@@ -66,6 +70,10 @@ class SourceFilter:
             if sources_config.localfile:
                 filtered_config.localfile = self._filter_by_name(
                     sources_config.localfile, source
+                )
+            if sources_config.yandexwiki:
+                filtered_config.yandexwiki = self._filter_by_name(
+                    sources_config.yandexwiki, source
                 )
 
         return filtered_config

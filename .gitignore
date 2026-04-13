@@ -53,9 +53,14 @@ coverage-*.xml
 
 # Distribution
 dist/
-build/ 
+build/
 config.yaml
+config.test.yaml
 tests/config.test.yaml
+
+# Yandex Cloud service account keys
+authorized_key.json
+*_authorized_key.json
 test-site/
 
 # Package-specific build artifacts

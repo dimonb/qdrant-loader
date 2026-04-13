@@ -16,7 +16,7 @@ def run_project_validate(
         all_sources = {}
         if not sources_config:
             return all_sources
-        for name in ("publicdocs", "git", "confluence", "jira", "localfile"):
+        for name in ("publicdocs", "git", "confluence", "jira", "localfile", "yandexwiki"):
             value = getattr(sources_config, name, None)
             if isinstance(value, dict):
                 all_sources.update(value)

@@ -23,6 +23,7 @@ def _get_connector_config_classes():
     from qdrant_loader.connectors.jira.config import JiraProjectConfig
     from qdrant_loader.connectors.localfile.config import LocalFileConfig
     from qdrant_loader.connectors.publicdocs.config import PublicDocsSourceConfig
+    from qdrant_loader.connectors.yandexwiki.config import YandexWikiConfig
 
     return {
         "PublicDocsSourceConfig": PublicDocsSourceConfig,
@@ -30,6 +31,7 @@ def _get_connector_config_classes():
         "ConfluenceSpaceConfig": ConfluenceSpaceConfig,
         "JiraProjectConfig": JiraProjectConfig,
         "LocalFileConfig": LocalFileConfig,
+        "YandexWikiConfig": YandexWikiConfig,
     }
 
 
@@ -51,6 +53,9 @@ class SourcesConfig(BaseModel):
     localfile: dict[str, Any] = Field(
         default_factory=dict, description="Local file sources"
     )
+    yandexwiki: dict[str, Any] = Field(
+        default_factory=dict, description="Yandex Wiki sources"
+    )
 
     model_config = ConfigDict(arbitrary_types_allowed=False, extra="forbid")
 
@@ -66,6 +71,7 @@ class SourcesConfig(BaseModel):
                 "confluence",
                 "jira",
                 "localfile",
+                "yandexwiki",
             ] and isinstance(field_value, dict):
                 processed_data[field_name] = self._convert_source_configs(
                     field_name, field_value
@@ -93,6 +99,8 @@ class SourcesConfig(BaseModel):
                     config_class = config_classes["JiraProjectConfig"]
                 elif source_type == "localfile":
                     config_class = config_classes["LocalFileConfig"]
+                elif source_type == "yandexwiki":
+                    config_class = config_classes["YandexWikiConfig"]
                 else:
                     # Unknown source type, keep as dict
                     converted[name] = config_data
@@ -147,5 +155,9 @@ class SourcesConfig(BaseModel):
             SourceType.LOCALFILE: {
                 name: config.model_dump() if hasattr(config, "model_dump") else config
                 for name, config in self.localfile.items()
+            },
+            SourceType.YANDEXWIKI: {
+                name: config.model_dump() if hasattr(config, "model_dump") else config
+                for name, config in self.yandexwiki.items()
             },
         }

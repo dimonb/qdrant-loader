@@ -6,6 +6,7 @@ from qdrant_loader.connectors.jira.config import JiraDeploymentType
 from qdrant_loader.connectors.jira.data_center_connector import JiraDataCenterConnector
 from qdrant_loader.connectors.localfile.connector import LocalFileConnector
 from qdrant_loader.connectors.publicdocs.connector import PublicDocsConnector
+from qdrant_loader.connectors.yandexwiki.connector import YandexWikiConnector
 
 """Connector registry for mapping source types and deployment types to connector classes."""
 CONNECTOR_REGISTRY = {
@@ -16,4 +17,5 @@ CONNECTOR_REGISTRY = {
     ("jira", JiraDeploymentType.DATACENTER): JiraDataCenterConnector,
     ("publicdocs", None): PublicDocsConnector,
     ("localfile", None): LocalFileConnector,
+    ("yandexwiki", None): YandexWikiConnector,
 }

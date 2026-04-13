@@ -45,7 +45,7 @@ async def run_project_status(
         sources = context.config.sources if context.config else None
         # Safely sum lengths of available source collections; treat missing/None as empty
         if sources:
-            names = ("publicdocs", "git", "confluence", "jira", "localfile")
+            names = ("publicdocs", "git", "confluence", "jira", "localfile", "yandexwiki")
             counts: list[int] = []
             for name in names:
                 value = getattr(sources, name, None)

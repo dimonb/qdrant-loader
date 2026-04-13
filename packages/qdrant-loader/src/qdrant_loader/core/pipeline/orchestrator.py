@@ -123,6 +123,7 @@ class PipelineOrchestrator:
                     filtered_config.jira,
                     filtered_config.publicdocs,
                     filtered_config.localfile,
+                    filtered_config.yandexwiki,
                 ]
             ):
                 raise ValueError(f"No sources found for type '{source_type}'")
@@ -315,6 +316,12 @@ class PipelineOrchestrator:
                 filtered_config.localfile, get_connector_instance, "LocalFile"
             )
             documents.extend(localfile_docs)
+
+        if filtered_config.yandexwiki:
+            yandexwiki_docs = await self.components.source_processor.process_source_type(
+                filtered_config.yandexwiki, get_connector_instance, "YandexWiki"
+            )
+            documents.extend(yandexwiki_docs)
 
         # Inject project metadata into documents if project context is available
         if project_id and self.project_manager:
